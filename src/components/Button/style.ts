@@ -13,7 +13,8 @@ export const ButtonContainer = styled.button`
 export const ButtonFilter = styled.span`
   background-color: ${cores.vermelho};
   color: ${cores.amarelo};
-  font-size: 14px;
+  font-size: 12px;
+  line-height: 14.06px;
   text-align: center;
   border: none;
   padding: 6px 12px;

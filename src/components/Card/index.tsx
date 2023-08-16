@@ -1,5 +1,10 @@
 import { Button } from '../Button'
-import { CardContainer, CardTitle, CardTitleReviewContainer } from './style'
+import {
+  CardContainer,
+  CardContainerFilter,
+  CardTitle,
+  CardTitleReviewContainer
+} from './style'
 
 import estrela from '../../assets/images/estrela.png'
 import { ButtonFilter } from '../Button/style'
@@ -10,12 +15,24 @@ type Props = {
   review: number
   description: string
   filter: string
+  highlight?: string
 }
 
-export const Card = ({ image, title, review, description, filter }: Props) => {
+export const Card = ({
+  image,
+  title,
+  review,
+  description,
+  filter,
+  highlight
+}: Props) => {
   return (
     <CardContainer>
-      <ButtonFilter>{filter}</ButtonFilter>
+      <CardContainerFilter>
+        {highlight !== undefined && <ButtonFilter>{highlight}</ButtonFilter>}
+
+        <ButtonFilter>{filter}</ButtonFilter>
+      </CardContainerFilter>
       <div>
         <img src={image} alt={title} />
       </div>

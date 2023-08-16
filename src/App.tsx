@@ -1,5 +1,5 @@
-import { ListCard } from './components/ListCard'
 import { Header } from './components/Header'
+import { ListCard } from './components/ListCard'
 import { GlobalCss } from './styles'
 
 function App() {

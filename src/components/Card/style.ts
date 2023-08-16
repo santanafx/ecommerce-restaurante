@@ -7,14 +7,11 @@ export const CardContainer = styled.div`
   flex-direction: column;
   border: 1px solid ${cores.vermelho};
   position: relative;
-
-  ${ButtonFilter} {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-  }
+  max-width: 472px;
 
   img {
+    max-width: 100%;
+    display: block
     margin-bottom: 8px;
   }
 
@@ -27,6 +24,17 @@ export const CardContainer = styled.div`
 
   ${ButtonContainer} {
     margin: 0 0 8px 8px;
+  }
+`
+
+export const CardContainerFilter = styled.div`
+  position: absolute;
+  z-index: 1;
+  top: 16px;
+  right: 16px;
+
+  ${ButtonFilter} {
+    margin-left: 8px;
   }
 `
 
