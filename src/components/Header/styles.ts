@@ -1,12 +1,13 @@
 import { styled } from 'styled-components'
 import { cores } from '../../styles'
 
-export const Imagem = styled.header`
+export const HeaderImage = styled.header`
   width: 100%;
   height: 384px;
   display: block;
   background-repeat: no-repeat;
   background-size: cover;
+  margin-bottom: 80px;
   position: relative;
 
   img {
