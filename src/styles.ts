@@ -2,8 +2,8 @@ import { createGlobalStyle } from 'styled-components'
 
 export const cores = {
   vermelho: '#E66767',
-  preto: 'black',
-  cinza: 'grey'
+  amarelo: '#fff8f1',
+  branco: '#fff'
 }
 
 export const GlobalCss = createGlobalStyle`
@@ -13,5 +13,9 @@ export const GlobalCss = createGlobalStyle`
   box-sizing: border-box;
   list-style: none;
   font-family: 'Roboto', sans-serif;
+}
+
+body{
+  background-color: ${cores.amarelo}
 }
 `
