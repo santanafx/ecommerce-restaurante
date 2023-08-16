@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 
 export const cores = {
-  branco: 'white',
+  vermelho: '#E66767',
   preto: 'black',
   cinza: 'grey'
 }
@@ -12,5 +12,6 @@ export const GlobalCss = createGlobalStyle`
   padding: 0;
   box-sizing: border-box;
   list-style: none;
+  font-family: 'Roboto', sans-serif;
 }
 `
