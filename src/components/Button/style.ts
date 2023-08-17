@@ -19,4 +19,5 @@ export const ButtonFilter = styled.span`
   text-align: center;
   border: none;
   padding: 6px 12px;
+  cursor: pointer;
 `

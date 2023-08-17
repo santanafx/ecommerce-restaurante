@@ -8,7 +8,9 @@ export const CardContainer = styled.div`
   border: 1px solid ${cores.vermelho};
   position: relative;
   max-width: 472px;
-
+  a {
+    text-decoration: none;
+  }
   img {
     max-width: 100%;
     display: block;

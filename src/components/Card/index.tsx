@@ -1,4 +1,5 @@
 import { Button } from '../Button'
+import { Link } from 'react-router-dom'
 import {
   CardContainer,
   CardContainerFilter,
@@ -31,7 +32,11 @@ export const Card = ({
       <CardContainerFilter>
         {highlight !== undefined && <ButtonFilter>{highlight}</ButtonFilter>}
 
-        {filter !== undefined && <ButtonFilter>{filter}</ButtonFilter>}
+        {filter !== undefined && (
+          <Link to="/perfil">
+            <ButtonFilter>{filter}</ButtonFilter>
+          </Link>
+        )}
       </CardContainerFilter>
       <div>
         <img src={image} alt={title} />
