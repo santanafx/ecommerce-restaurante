@@ -7,7 +7,7 @@ export const CardPerfilContainer = styled.div`
   flex-direction: column;
   background-color: ${cores.vermelho};
   position: relative;
-  max-width: 338px;
+  width: 338px;
 
   p {
     font-size: 14px;
@@ -31,9 +31,11 @@ export const CardPerfilImgContainer = styled.div`
   display: flex;
   justify-content: center;
   img {
-    max-width: 100%;
-    display: block;
     margin: 8px;
+    width: 100%;
+    object-fit: cover;
+    max-height: 167px;
+    min-height: 167px;
   }
 `
 
