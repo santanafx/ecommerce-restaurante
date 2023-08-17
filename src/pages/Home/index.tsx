@@ -1,11 +1,11 @@
 import { Header } from '../../components/Header'
-import { ListCard } from '../../components/ListCard'
+import { ListCardHome } from '../../components/ListCardHome'
 
 export const Home = () => {
   return (
     <>
       <Header />
-      <ListCard />
+      <ListCardHome />
     </>
   )
 }

@@ -10,6 +10,7 @@ export const ButtonContainer = styled.button`
   padding: 3px 8px;
   cursor: pointer;
 `
+
 export const ButtonFilter = styled.span`
   background-color: ${cores.vermelho};
   color: ${cores.amarelo};

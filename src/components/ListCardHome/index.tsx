@@ -72,7 +72,7 @@ const listaDeComidas: Props[] = [
   }
 ]
 
-export const ListCard = () => {
+export const ListCardHome = () => {
   return (
     <ListCardContainer>
       <ListCardGridContainer>

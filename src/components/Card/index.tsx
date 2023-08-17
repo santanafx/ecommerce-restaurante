@@ -31,13 +31,14 @@ export const Card = ({
       <CardContainerFilter>
         {highlight !== undefined && <ButtonFilter>{highlight}</ButtonFilter>}
 
-        <ButtonFilter>{filter}</ButtonFilter>
+        {filter !== undefined && <ButtonFilter>{filter}</ButtonFilter>}
       </CardContainerFilter>
       <div>
         <img src={image} alt={title} />
       </div>
       <CardTitleReviewContainer>
         <CardTitle>{title}</CardTitle>
+
         <div>
           <span>{review}</span>
           <img src={estrela} alt="Estrela" />
