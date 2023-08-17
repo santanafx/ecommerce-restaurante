@@ -11,7 +11,7 @@ export const CardContainer = styled.div`
 
   img {
     max-width: 100%;
-    display: block
+    display: block;
     margin-bottom: 8px;
   }
 

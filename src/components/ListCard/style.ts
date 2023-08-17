@@ -5,6 +5,7 @@ export const ListCardContainer = styled.main`
   justify-content: center;
   margin: 0 auto;
   width: 90%;
+  margin-bottom: 120px;
 `
 
 export const ListCardGridContainer = styled.div`
