@@ -12,8 +12,10 @@ export const CardContainer = styled.div`
     text-decoration: none;
   }
   img {
-    max-width: 100%;
-    display: block;
+    width: 100%;
+    object-fit: cover;
+    max-height: 217px;
+    min-height: 217px;
     margin-bottom: 8px;
   }
 
@@ -45,6 +47,7 @@ export const CardTitleReviewContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 8px;
+  margin-bottom: 16px;
 
   span {
     margin-right: 8px;
@@ -52,6 +55,13 @@ export const CardTitleReviewContainer = styled.div`
     line-height: 21.09px;
     font-weight: bold;
     color: ${cores.vermelho};
+  }
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    max-height: 21px;
+    min-height: 21px;
   }
 
   div {

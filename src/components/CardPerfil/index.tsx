@@ -7,21 +7,23 @@ import {
 } from './style'
 
 type Props = {
-  image: string
-  title: string
-  description: string
+  foto: string
+  preco?: number
+  nome: string
+  descricao: string
+  porcao?: string
 }
 
-export const CardPerfil = ({ image, title, description }: Props) => {
+export const CardPerfil = ({ foto, preco, nome, descricao, porcao }: Props) => {
   return (
     <CardPerfilContainer>
       <CardPerfilImgContainer>
-        <img src={image} alt={title} />
+        <img src={foto} alt={nome} />
       </CardPerfilImgContainer>
       <CardPerfilTitleReviewContainer>
-        <CardPerfilTitle>{title}</CardPerfilTitle>
+        <CardPerfilTitle>{nome}</CardPerfilTitle>
       </CardPerfilTitleReviewContainer>
-      <p>{description}</p>
+      <p>{descricao}</p>
       <Button type="button">Adicionar ao carrinho</Button>
     </CardPerfilContainer>
   )

@@ -1,9 +1,13 @@
+import { useParams } from 'react-router-dom'
 import { ListCardPerfil } from '../../components/ListCardPerfil'
 import { PerfilHeader } from '../../components/PerfilHeader'
 
-export const Perfil = () => (
-  <>
-    <PerfilHeader />
-    <ListCardPerfil />
-  </>
-)
+export const Perfil = () => {
+  const { tipo } = useParams()
+  return (
+    <>
+      <PerfilHeader />
+      <ListCardPerfil tipo={tipo} />
+    </>
+  )
+}

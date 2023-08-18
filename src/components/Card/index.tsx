@@ -11,48 +11,48 @@ import estrela from '../../assets/images/estrela.png'
 import { ButtonFilter } from '../Button/style'
 
 type Props = {
-  image: string
-  title: string
-  review: number
-  description: string
-  filter: string
-  highlight?: string
+  titulo: string
+  destacado: boolean
+  tipo: string
+  avaliacao: number
+  descricao: string
+  capa: string
 }
 
 export const Card = ({
-  image,
-  title,
-  review,
-  description,
-  filter,
-  highlight
+  titulo,
+  destacado,
+  tipo,
+  avaliacao,
+  descricao,
+  capa
 }: Props) => {
   return (
     <CardContainer>
       <CardContainerFilter>
-        {highlight !== undefined && <ButtonFilter>{highlight}</ButtonFilter>}
+        {destacado === true && <ButtonFilter>Destaque da semana</ButtonFilter>}
 
-        {filter !== undefined && (
-          <Link to="/perfil">
-            <ButtonFilter>{filter}</ButtonFilter>
+        {tipo !== undefined && (
+          <Link to={`/perfil/${tipo}`}>
+            <ButtonFilter>{tipo}</ButtonFilter>
           </Link>
         )}
       </CardContainerFilter>
       <div>
-        <img src={image} alt={title} />
+        <img src={capa} alt={titulo} />
       </div>
       <CardTitleReviewContainer>
-        <CardTitle>{title}</CardTitle>
+        <CardTitle>{titulo}</CardTitle>
 
         <div>
-          <span>{review}</span>
+          <span>{avaliacao}</span>
           <img src={estrela} alt="Estrela" />
         </div>
       </CardTitleReviewContainer>
-      <p>{description}</p>
-      <div>
+      <p>{descricao}</p>
+      <Link to={`/perfil/${tipo}`}>
         <Button type="button">Saiba mais</Button>
-      </div>
+      </Link>
     </CardContainer>
   )
 }

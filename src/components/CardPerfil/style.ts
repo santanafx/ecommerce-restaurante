@@ -17,7 +17,7 @@ export const CardPerfilContainer = styled.div`
   }
 
   ${ButtonContainer} {
-    margin: 0 8px 8px 8px;
+    margin: auto 8px 8px 8px;
     background-color: ${cores.amarelo};
     color: ${cores.vermelho};
     font-weight: 700;

@@ -3,68 +3,59 @@ import { ListCardPerfilContainer, ListCardPerfilGridContainer } from './style'
 import pizza from '../../assets/images/pizza.png'
 import { CardPerfil } from '../CardPerfil'
 
-type Props = {
+import { useState, useEffect } from 'react'
+
+type Cardapio = {
+  foto: string
+  preco: number
   id: number
-  image: string
-  title: string
-  description: string
+  nome: string
+  descricao: string
+  porcao: string
 }
 
-const listaDeComidasItaliana: Props[] = [
-  {
-    id: 7,
-    image: pizza,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 8,
-    image: pizza,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 9,
-    image: pizza,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 10,
-    image: pizza,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 11,
-    image: pizza,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 12,
-    image: pizza,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  }
-]
+type ListaDeComidas = {
+  id: number
+  titulo: string
+  destacado: boolean
+  tipo: string
+  avaliacao: number
+  descricao: string
+  capa: string
+  cardapio: Cardapio[]
+}
 
-export const ListCardPerfil = () => {
+type Props = {
+  tipo: string | undefined
+}
+
+export const ListCardPerfil = ({ tipo }: Props) => {
+  const [listaDeComidas, setListaDeComidas] = useState<ListaDeComidas[]>([])
+
+  useEffect(() => {
+    fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes')
+      .then((res) => res.json())
+      .then((res) => setListaDeComidas(res))
+  }, [])
+
+  const tipoDaComida: ListaDeComidas[] = listaDeComidas.filter(
+    (e) => e.tipo === tipo
+  )
+
+  const tipoDaComidaCardapio: Cardapio[] =
+    tipoDaComida.length > 0 ? tipoDaComida[0].cardapio : []
+
   return (
     <ListCardPerfilContainer>
       <ListCardPerfilGridContainer>
-        {listaDeComidasItaliana.map((e) => (
+        {tipoDaComidaCardapio.map((element) => (
           <CardPerfil
-            key={e.id}
-            image={e.image}
-            title={e.title}
-            description={e.description}
+            key={element.id}
+            foto={element.foto}
+            preco={element.preco}
+            nome={element.nome}
+            descricao={element.descricao}
+            porcao={element.porcao}
           />
         ))}
       </ListCardPerfilGridContainer>
