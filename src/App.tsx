@@ -5,6 +5,7 @@ import { GlobalCss } from './styles'
 import { Home } from './pages/Home'
 import { Perfil } from './pages/Perfil'
 import { store } from './store'
+import { Carrinho } from './components/Carrinho'
 
 const Rotas = () => (
   <Routes>
@@ -20,6 +21,7 @@ function App() {
         <GlobalCss />
         <Rotas />
         <Footer />
+        <Carrinho />
       </BrowserRouter>
     </Provider>
   )

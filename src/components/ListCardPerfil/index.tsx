@@ -3,10 +3,10 @@ import { ListCardPerfilContainer, ListCardPerfilGridContainer } from './style'
 
 import { CardPerfil } from '../CardPerfil'
 
-type Cardapio = {
+export type Cardapio = {
   foto: string
   preco: number
-  id: number
+  id?: number
   nome: string
   descricao: string
   porcao: string
@@ -46,16 +46,18 @@ export const ListCardPerfil = ({ tipo }: Props) => {
   return (
     <ListCardPerfilContainer>
       <ListCardPerfilGridContainer>
-        {tipoDaComidaCardapio.map((element) => (
-          <CardPerfil
-            key={element.id}
-            foto={element.foto}
-            preco={element.preco}
-            nome={element.nome}
-            descricao={element.descricao}
-            porcao={element.porcao}
-          />
-        ))}
+        {tipoDaComidaCardapio.map((element) => {
+          return (
+            <CardPerfil
+              key={element.id}
+              foto={element.foto}
+              preco={element.preco}
+              nome={element.nome}
+              descricao={element.descricao}
+              porcao={element.porcao}
+            />
+          )
+        })}
       </ListCardPerfilGridContainer>
     </ListCardPerfilContainer>
   )

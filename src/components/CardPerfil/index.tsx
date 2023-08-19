@@ -2,39 +2,46 @@ import { useState } from 'react'
 import { Button } from '../Button'
 import {
   BotaoCloseImgContainer,
-  BotaoLixeiraImgContainer,
   CardPerfilContainer,
   CardPerfilImgContainer,
   CardPerfilTitle,
   CardPerfilTitleReviewContainer,
-  Carrinho,
-  CarrinhoCard,
-  CarrinhoContent,
-  CarrinhoEntrega,
   Modal,
   ModalContent
 } from './style'
 
 import close from '../../assets/images/close.png'
-import lixeira from '../../assets/images/lixeira.png'
+import { useDispatch, useSelector } from 'react-redux'
+import { add, open } from '../../store/reducers/carrinho'
 
-export type Comidas = {
-  foto: string
-  preco?: number
-  nome: string
-  descricao: string
-  porcao?: string
-}
+import { Cardapio } from '../ListCardPerfil/index'
 
 export const CardPerfil = ({
+  id,
   foto,
   preco,
   nome,
   descricao,
   porcao
-}: Comidas) => {
+}: Cardapio) => {
   const [modal, setModal] = useState(false)
-  const [carrinho, setCarrinho] = useState(false)
+
+  const dispatch = useDispatch()
+
+  const addCart = () => {
+    dispatch(open())
+    dispatch(
+      add({
+        id,
+        foto,
+        preco,
+        nome,
+        descricao,
+        porcao
+      })
+    )
+  }
+
   return (
     <CardPerfilContainer>
       <CardPerfilImgContainer>
@@ -44,46 +51,9 @@ export const CardPerfil = ({
         <CardPerfilTitle>{nome}</CardPerfilTitle>
       </CardPerfilTitleReviewContainer>
       <p>{descricao}</p>
-      <Button
-        type="button"
-        onClick={() => {
-          setCarrinho(true)
-        }}
-      >
+      <Button type="button" onClick={addCart}>
         Adicionar ao carrinho
       </Button>
-      <Carrinho className={carrinho ? 'visivel' : ''}>
-        <CarrinhoContent>
-          <CarrinhoCard>
-            <img src={foto} alt={nome} />
-            <div>
-              <h2>{nome}</h2>
-              <span>R$ {preco}</span>
-            </div>
-            <BotaoLixeiraImgContainer>
-              <img
-                src={lixeira}
-                alt="Botao de remover item"
-                // onClick={() => setModal(false)}
-              />
-            </BotaoLixeiraImgContainer>
-          </CarrinhoCard>
-          <CarrinhoEntrega>
-            <div>
-              <span>Valor total</span>
-              <span>R$ preco total</span>
-            </div>
-            <Button type="button">Continuar com a entrega</Button>
-          </CarrinhoEntrega>
-        </CarrinhoContent>
-        <div
-          className="overlay"
-          onClick={() => {
-            setCarrinho(false)
-          }}
-        ></div>
-      </Carrinho>
-
       <Modal className={modal ? 'visivel' : ''}>
         <ModalContent>
           <img src={foto} alt="Foto da comida" />
