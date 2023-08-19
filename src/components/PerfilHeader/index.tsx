@@ -1,16 +1,18 @@
-import React from 'react'
 import { PerfilHeaderComida, PerfilHeaderContainer } from './style'
 
 import fundo from '../../assets/images/fundo.png'
 import logo from '../../assets/images/logo.png'
 import macarrao from '../../assets/images/macarrao.png'
+import { Link } from 'react-router-dom'
 
 export const PerfilHeader = () => {
   return (
     <>
       <PerfilHeaderContainer style={{ backgroundImage: `url(${fundo})` }}>
         <span>Restaurantes</span>
-        <img src={logo} alt="Logo" />
+        <Link to="/">
+          <img src={logo} alt="Logo" />
+        </Link>
         <span>0 produto(s) no carrinho</span>
       </PerfilHeaderContainer>
       <PerfilHeaderComida

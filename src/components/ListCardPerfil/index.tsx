@@ -1,9 +1,7 @@
+import { useState, useEffect } from 'react'
 import { ListCardPerfilContainer, ListCardPerfilGridContainer } from './style'
 
-import pizza from '../../assets/images/pizza.png'
 import { CardPerfil } from '../CardPerfil'
-
-import { useState, useEffect } from 'react'
 
 type Cardapio = {
   foto: string

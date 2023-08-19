@@ -1,9 +1,6 @@
-import { ListCardContainer, ListCardGridContainer } from './style'
-
-import macarrao from '../../assets/images/macarrao.png'
-import niguiri from '../../assets/images/niguiri.png'
-import { Card } from '../Card'
 import { useEffect, useState } from 'react'
+import { ListCardContainer, ListCardGridContainer } from './style'
+import { Card } from '../Card'
 
 type Cardapio = {
   foto: string
