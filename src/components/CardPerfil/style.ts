@@ -36,6 +36,7 @@ export const CardPerfilImgContainer = styled.div`
     object-fit: cover;
     max-height: 167px;
     min-height: 167px;
+    cursor: pointer;
   }
 `
 
@@ -64,4 +65,89 @@ export const CardPerfilTitle = styled.h2`
   font-size: 18px;
   line-height: 21.09px;
   margin-bottom: 8px;
+`
+
+export const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  &.visivel {
+    display: flex;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0, 0.73);
+  }
+`
+
+export const ModalContent = styled.div`
+  display: flex;
+  background-color: ${cores.vermelho};
+  max-width: 1024px;
+  position: relative;
+  z-index: 1;
+  padding: 32px;
+
+  h2 {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21.09px;
+    color: ${cores.amarelo};
+    margin-bottom: 16px;
+  }
+
+  p {
+    color: ${cores.amarelo};
+    padding: 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  span {
+    display: block;
+    color: ${cores.amarelo};
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    margin-bottom: 16px;
+  }
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    max-height: 280px;
+    min-height: 280px;
+    margin-right: 24px;
+  }
+
+  ${ButtonContainer} {
+    margin: auto 0 0 0;
+  }
+`
+export const BotaoCloseImgContainer = styled.div`
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    max-height: 16px;
+    min-height: 16px;
+    margin-right: 0;
+    cursor: pointer;
+  }
 `
