@@ -1,8 +1,10 @@
+import { Provider } from 'react-redux'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Footer } from './components/Footer'
 import { GlobalCss } from './styles'
 import { Home } from './pages/Home'
 import { Perfil } from './pages/Perfil'
+import { store } from './store'
 
 const Rotas = () => (
   <Routes>
@@ -13,13 +15,13 @@ const Rotas = () => (
 
 function App() {
   return (
-    <div>
+    <Provider store={store}>
       <BrowserRouter>
         <GlobalCss />
         <Rotas />
         <Footer />
       </BrowserRouter>
-    </div>
+    </Provider>
   )
 }
 
