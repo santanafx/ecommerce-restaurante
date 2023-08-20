@@ -73,6 +73,7 @@ export const Carrinho = () => {
           <Button type="button">Continuar com a entrega</Button>
         </CarrinhoEntrega>
       </CarrinhoContent>
+
       <div className="overlay" onClick={closeCart}></div>
     </CarrinhoContainer>
   )
