@@ -11,6 +11,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
 import { close, remove } from '../../store/reducers/carrinho'
 
+const formataPreco = (preco = 0) => {
+  return new Intl.NumberFormat('pr-br', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(preco)
+}
+
 export const Carrinho = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.carrinho)
 
@@ -24,6 +31,12 @@ export const Carrinho = () => {
     if (id !== undefined) {
       dispatch(remove(id))
     }
+  }
+
+  const precoTotal = () => {
+    return items.reduce((acumulador, valorAtual) => {
+      return (acumulador += valorAtual.preco)
+    }, 0)
   }
 
   return (
@@ -55,7 +68,7 @@ export const Carrinho = () => {
         <CarrinhoEntrega>
           <div>
             <span>Valor total</span>
-            <span>R$ preco total</span>
+            <span>R$ {formataPreco(precoTotal())}</span>
           </div>
           <Button type="button">Continuar com a entrega</Button>
         </CarrinhoEntrega>
