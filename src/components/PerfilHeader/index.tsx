@@ -4,8 +4,12 @@ import fundo from '../../assets/images/fundo.png'
 import logo from '../../assets/images/logo.png'
 import macarrao from '../../assets/images/macarrao.png'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { RootReducer } from '../../store'
 
 export const PerfilHeader = () => {
+  const { items } = useSelector((state: RootReducer) => state.carrinho)
+
   return (
     <>
       <PerfilHeaderContainer style={{ backgroundImage: `url(${fundo})` }}>
@@ -13,7 +17,7 @@ export const PerfilHeader = () => {
         <Link to="/">
           <img src={logo} alt="Logo" />
         </Link>
-        <span>0 produto(s) no carrinho</span>
+        <span>{items.length} produto(s) no carrinho</span>
       </PerfilHeaderContainer>
       <PerfilHeaderComida
         style={{
