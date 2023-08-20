@@ -11,7 +11,7 @@ import {
 } from './style'
 
 import close from '../../assets/images/close.png'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { add, open } from '../../store/reducers/carrinho'
 
 import { Cardapio } from '../ListCardPerfil/index'

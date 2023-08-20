@@ -9,7 +9,7 @@ import { Button } from '../Button'
 import lixeira from '../../assets/images/lixeira.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
-import { close } from '../../store/reducers/carrinho'
+import { close, remove } from '../../store/reducers/carrinho'
 
 export const Carrinho = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.carrinho)
@@ -20,21 +20,38 @@ export const Carrinho = () => {
     dispatch(close())
   }
 
+  const removeItem = (id: number) => {
+    if (id !== undefined) {
+      dispatch(remove(id))
+    }
+  }
+
   return (
     <CarrinhoContainer className={isOpen ? 'visivel' : ''}>
       <CarrinhoContent>
-        {items.map((e) => (
-          <CarrinhoCard key={e.nome}>
-            <img src={e.foto} alt={e.nome} />
-            <div>
-              <h2>{e.nome}</h2>
-              <span>R$ {e.preco}</span>
-            </div>
-            <BotaoLixeiraImgContainer>
-              <img src={lixeira} alt="Botao de remover item" />
-            </BotaoLixeiraImgContainer>
-          </CarrinhoCard>
-        ))}
+        {items.map((e, index) => {
+          console.log(e)
+          return (
+            <CarrinhoCard key={e.nome}>
+              <img src={e.foto} alt={e.nome} />
+              <div>
+                <h2>{e.nome}</h2>
+                <span>R$ {e.preco}</span>
+              </div>
+              <BotaoLixeiraImgContainer>
+                <img
+                  src={lixeira}
+                  alt="Botao de remover item"
+                  onClick={() => {
+                    if (typeof e.id === 'number') {
+                      removeItem(e.id + index)
+                    }
+                  }}
+                />
+              </BotaoLixeiraImgContainer>
+            </CarrinhoCard>
+          )
+        })}
         <CarrinhoEntrega>
           <div>
             <span>Valor total</span>

@@ -5,7 +5,7 @@ import { Card } from '../Card'
 type Cardapio = {
   foto: string
   preco: number
-  id: number
+  id: number | string
   nome: string
   descricao: string
   porcao: string
