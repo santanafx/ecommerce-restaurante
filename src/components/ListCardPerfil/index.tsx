@@ -47,7 +47,6 @@ export const ListCardPerfil = ({ tipo }: Props) => {
     <ListCardPerfilContainer>
       <ListCardPerfilGridContainer>
         {tipoDaComidaCardapio.map((element) => {
-          console.log(element.id)
           return (
             <CardPerfil
               key={element.id}

@@ -9,7 +9,7 @@ import { Button } from '../Button'
 import lixeira from '../../assets/images/lixeira.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
-import { close, remove } from '../../store/reducers/carrinho'
+import { close, remove, entregaOpen } from '../../store/reducers/carrinho'
 
 const formataPreco = (preco = 0) => {
   return new Intl.NumberFormat('pr-br', {
@@ -19,7 +19,9 @@ const formataPreco = (preco = 0) => {
 }
 
 export const Carrinho = () => {
-  const { isOpen, items } = useSelector((state: RootReducer) => state.carrinho)
+  const { isOpen, items, isEntregaOpen } = useSelector(
+    (state: RootReducer) => state.carrinho
+  )
 
   const dispatch = useDispatch()
 
@@ -39,11 +41,15 @@ export const Carrinho = () => {
     }, 0)
   }
 
+  const openEntrega = () => {
+    dispatch(entregaOpen())
+    dispatch(close())
+  }
+
   return (
     <CarrinhoContainer className={isOpen ? 'visivel' : ''}>
       <CarrinhoContent>
         {items.map((e, index) => {
-          console.log(e)
           return (
             <CarrinhoCard key={e.nome}>
               <img src={e.foto} alt={e.nome} />
@@ -71,7 +77,9 @@ export const Carrinho = () => {
             <span>{formataPreco(precoTotal())}</span>
           </div>
 
-          <Button type="button">Continuar com a entrega</Button>
+          <Button type="button" onClick={openEntrega}>
+            Continuar com a entrega
+          </Button>
         </CarrinhoEntrega>
       </CarrinhoContent>
       <div className="overlay" onClick={closeCart}></div>

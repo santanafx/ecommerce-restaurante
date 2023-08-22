@@ -6,6 +6,7 @@ import { Home } from './pages/Home'
 import { Perfil } from './pages/Perfil'
 import { store } from './store'
 import { Carrinho } from './components/Carrinho'
+import { Entrega } from './components/Entrega'
 
 const Rotas = () => (
   <Routes>
@@ -22,6 +23,7 @@ function App() {
         <Rotas />
         <Footer />
         <Carrinho />
+        <Entrega />
       </BrowserRouter>
     </Provider>
   )
