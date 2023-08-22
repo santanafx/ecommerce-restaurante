@@ -11,7 +11,7 @@ export const Header = () => {
       </Link>
       <p>
         Viva experiências gastronômicas <br />
-        no conforto da sua casa
+        no conforto da sua casa.
       </p>
     </HeaderImage>
   )
