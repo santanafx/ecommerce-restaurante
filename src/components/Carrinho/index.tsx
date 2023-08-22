@@ -68,7 +68,7 @@ export const Carrinho = () => {
         <CarrinhoEntrega>
           <div>
             <span>Valor total</span>
-            <span>R$ {formataPreco(precoTotal())}</span>
+            <span>{formataPreco(precoTotal())}</span>
           </div>
 
           <Button type="button">Continuar com a entrega</Button>
