@@ -75,6 +75,41 @@ export const EntregaForm = styled.form`
       width: 155px;
     }
   }
+
+  .cartao-cvv {
+    display: flex;
+    justify-content: space-between;
+
+    :first-child {
+      width: 228px;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+      width: 87px;
+    }
+  }
+
+  .mesVencimento-anoVencimento {
+    display: flex;
+    justify-content: space-between;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      width: 155px;
+    }
+  }
+
+  p {
+    width: 344px;
+    margin-bottom: 16px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: ${cores.amarelo};
+  }
 `
 
 export const EntregaButtonContainer = styled.div`

@@ -19,9 +19,7 @@ const formataPreco = (preco = 0) => {
 }
 
 export const Carrinho = () => {
-  const { isOpen, items, isEntregaOpen } = useSelector(
-    (state: RootReducer) => state.carrinho
-  )
+  const { isOpen, items } = useSelector((state: RootReducer) => state.carrinho)
 
   const dispatch = useDispatch()
 
