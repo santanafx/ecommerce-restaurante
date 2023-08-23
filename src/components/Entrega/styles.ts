@@ -33,84 +33,98 @@ export const EntregaContent = styled.div`
   right: 0;
   z-index: 1;
   min-width: 360px;
+  max-width: 360px;
   background-color: ${cores.vermelho};
   height: 100%;
+
+  form {
+    margin: 32px 8px 0 8px;
+
+    .invisivel {
+      display: none;
+    }
+
+    section {
+      display: flex;
+      flex-direction: column;
+
+      h2 {
+        font-size: 16px;
+        font-weight: 700;
+        color: ${cores.amarelo};
+        margin-bottom: 16px;
+      }
+
+      label {
+        font-size: 14px;
+        font-weight: 700;
+        color: ${cores.amarelo};
+        margin-bottom: 8px;
+      }
+
+      input {
+        background-color: ${cores.amarelo};
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        border: none;
+        padding: 8px;
+
+        &.error {
+          border: 1px solid red;
+        }
+      }
+
+      .cep-numero {
+        display: flex;
+        justify-content: space-between;
+
+        div {
+          display: flex;
+          flex-direction: column;
+          width: 155px;
+        }
+      }
+
+      .cartao-cvv {
+        display: flex;
+        justify-content: space-between;
+
+        :first-child {
+          width: 228px;
+        }
+
+        div {
+          display: flex;
+          flex-direction: column;
+          width: 87px;
+        }
+      }
+
+      .mesVencimento-anoVencimento {
+        display: flex;
+        justify-content: space-between;
+
+        div {
+          display: flex;
+          flex-direction: column;
+          width: 155px;
+        }
+      }
+
+      p {
+        width: 344px;
+        margin-bottom: 16px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+        color: ${cores.amarelo};
+      }
+    }
+  }
 `
 
-export const EntregaForm = styled.form`
-  margin: 32px 8px 0 8px;
-  display: flex;
-  flex-direction: column;
-
-  h2 {
-    font-size: 16px;
-    font-weight: 700;
-    color: ${cores.amarelo};
-    margin-bottom: 16px;
-  }
-
-  label {
-    font-size: 14px;
-    font-weight: 700;
-    color: ${cores.amarelo};
-    margin-bottom: 8px;
-  }
-
-  input {
-    background-color: ${cores.amarelo};
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    border: none;
-    padding: 8px;
-  }
-
-  .cep-numero {
-    display: flex;
-    justify-content: space-between;
-
-    div {
-      display: flex;
-      flex-direction: column;
-      width: 155px;
-    }
-  }
-
-  .cartao-cvv {
-    display: flex;
-    justify-content: space-between;
-
-    :first-child {
-      width: 228px;
-    }
-
-    div {
-      display: flex;
-      flex-direction: column;
-      width: 87px;
-    }
-  }
-
-  .mesVencimento-anoVencimento {
-    display: flex;
-    justify-content: space-between;
-
-    div {
-      display: flex;
-      flex-direction: column;
-      width: 155px;
-    }
-  }
-
-  p {
-    width: 344px;
-    margin-bottom: 16px;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 22px;
-    color: ${cores.amarelo};
-  }
-`
+export const EntregaForm = styled.div``
 
 export const EntregaButtonContainer = styled.div`
   margin-top: 24px;

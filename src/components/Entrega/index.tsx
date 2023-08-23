@@ -3,18 +3,23 @@ import { Button } from '../Button'
 import {
   EntregaButtonContainer,
   EntregaContainer,
-  EntregaContent,
-  EntregaForm
+  EntregaContent
 } from './styles'
 import { RootReducer } from '../../store'
 import { entregaClose, open } from '../../store/reducers/carrinho'
 import { useState } from 'react'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
 
 const formataPreco = (preco = 0) => {
   return new Intl.NumberFormat('pr-br', {
     style: 'currency',
     currency: 'BRL'
   }).format(preco)
+}
+
+type RespostaApi = {
+  orderId: string
 }
 
 export const Entrega = () => {
@@ -25,6 +30,115 @@ export const Entrega = () => {
   const [pagamento, setPagamento] = useState(false)
   const [cartao, setCartao] = useState(false)
   const [realizarPedido, setRealizarPedido] = useState(false)
+  const [respostaDaApi, setRespostaDaApi] = useState<RespostaApi | null>(null)
+
+  const form = useFormik({
+    initialValues: {
+      id: 1,
+      price: 10,
+      receiver: '',
+      description: '',
+      city: '',
+      zipCode: '',
+      number: '',
+      complement: '',
+      name: '',
+      numberOfCard: '',
+      code: '',
+      month: '',
+      year: ''
+    },
+    validationSchema: Yup.object({
+      receiver: Yup.string()
+        .min(5, 'O nome precisa ter pelo menos 5 caracteres')
+        .required('O campo é obrigatório'),
+      description: Yup.string()
+        .min(5, 'O endereço precisa ter pelo menos 5 caracteres')
+        .required('O campo é obrigatório'),
+      city: Yup.string()
+        .min(5, 'A cidade precisa ter pelo menos 5 caracteres')
+        .required('O campo é obrigatório'),
+      zipCode: Yup.string()
+        .min(8, 'O cep precisa ter 8 caracteres')
+        .max(8, 'O cep precisa ter 8 caracteres')
+        .required('O campo é obrigatório'),
+      number: Yup.string()
+        .min(1, 'O número precisa ter pelo menos 1 caractere')
+        .required('O campo é obrigatório'),
+      name: Yup.string()
+        .min(5, 'O nome precisa ter pelo menos 5 caracteres')
+        .required('O campo é obrigatório'),
+      numberOfCard: Yup.string()
+        .min(16, 'O cartão precisa ter 16 caracteres')
+        .max(16, 'O cartão precisa ter 16 caracteres')
+        .required('O campo é obrigatório'),
+      code: Yup.string()
+        .min(3, 'O CVV precisa ter 3 caracteres')
+        .max(3, 'O CVV precisa ter 3 caracteres')
+        .required('O campo é obrigatório'),
+      month: Yup.string()
+        .min(2, 'O mês precisa ter 3 caracteres')
+        .max(2, 'O mês precisa ter 3 caracteres')
+        .required('O campo é obrigatório'),
+      year: Yup.string()
+        .min(2, 'O ano precisa ter caracteres')
+        .max(2, 'O ano precisa ter caracteres')
+        .required('O campo é obrigatório')
+    }),
+    onSubmit: async (values) => {
+      try {
+        const response = await fetch(
+          'https://fake-api-tau.vercel.app/api/efood/checkout',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              products: [
+                {
+                  id: 1,
+                  price: 10
+                }
+              ],
+              delivery: {
+                receiver: values.receiver,
+                adress: {
+                  description: values.description,
+                  city: values.city,
+                  zipCode: values.zipCode,
+                  number: values.number,
+                  complement: values.complement
+                }
+              },
+              payment: {
+                card: {
+                  name: values.name,
+                  number: values.numberOfCard,
+                  code: values.code,
+                  expires: {
+                    month: values.month,
+                    year: values.year
+                  }
+                }
+              }
+            })
+          }
+        )
+
+        if (response.ok) {
+          const responseData = await response.json()
+          console.log('Resposta da API:', responseData)
+          setRespostaDaApi(responseData)
+          form.resetForm()
+        } else {
+          console.error('Erro ao enviar POST para a API:', response.status)
+        }
+      } catch (error) {
+        console.error('Erro ao enviar POST para a API:', error)
+      }
+    }
+  })
 
   const voltarCarrinho = () => {
     dispatch(open())
@@ -41,6 +155,7 @@ export const Entrega = () => {
   }
 
   const finalizarPagamento = () => {
+    form.handleSubmit()
     setCartao(!cartao)
     setRealizarPedido(!realizarPedido)
   }
@@ -51,30 +166,92 @@ export const Entrega = () => {
     }, 0)
   }
 
+  const concluir = () => {
+    setPagamento(false)
+    setCartao(false)
+    setRealizarPedido(false)
+  }
+
+  const checkInputHasError = (fieldName: string) => {
+    const isTouched = fieldName in form.touched
+    const isInvalid = fieldName in form.errors
+    const hasError = isTouched && isInvalid
+
+    return hasError
+  }
+
   return (
     <EntregaContainer className={isEntregaOpen ? 'visivel' : ''}>
       <EntregaContent>
-        {!pagamento ? (
-          <EntregaForm>
+        <form onSubmit={form.handleSubmit}>
+          <section className={!pagamento ? '' : 'invisivel'}>
             <h2>Entrega</h2>
-            <label htmlFor="receptor">Quem irá receber</label>
-            <input type="text" id="receptor" />
-            <label htmlFor="endereco">Endereço</label>
-            <input type="text" id="endereco" />
-            <label htmlFor="cidade">Cidade</label>
-            <input type="text" id="cidade" />
+            <label htmlFor="receiver">Quem irá receber</label>
+            <input
+              type="text"
+              id="receiver"
+              name="receiver"
+              value={form.values.receiver}
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+              className={checkInputHasError('receiver') ? 'error' : ''}
+            />
+            <label htmlFor="description">Endereço</label>
+            <input
+              type="text"
+              id="description"
+              name="description"
+              value={form.values.description}
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+              className={checkInputHasError('description') ? 'error' : ''}
+            />
+            <label htmlFor="city">Cidade</label>
+            <input
+              type="text"
+              id="city"
+              name="city"
+              value={form.values.city}
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+              className={checkInputHasError('city') ? 'error' : ''}
+            />
             <div className="cep-numero">
               <div>
-                <label htmlFor="cep">CEP</label>
-                <input type="text" id="cep" />
+                <label htmlFor="zipCode">CEP</label>
+                <input
+                  type="text"
+                  id="zipCode"
+                  name="zipCode"
+                  value={form.values.zipCode}
+                  onChange={form.handleChange}
+                  onBlur={form.handleBlur}
+                  className={checkInputHasError('zipCode') ? 'error' : ''}
+                />
               </div>
               <div>
-                <label htmlFor="numero">Número</label>
-                <input type="text" id="numero" />
+                <label htmlFor="number">Número</label>
+                <input
+                  type="text"
+                  id="number"
+                  name="number"
+                  value={form.values.number}
+                  onChange={form.handleChange}
+                  onBlur={form.handleBlur}
+                  className={checkInputHasError('number') ? 'error' : ''}
+                />
               </div>
             </div>
-            <label htmlFor="complemento">Complemento(opcional)</label>
-            <input type="text" id="complemento" />
+            <label htmlFor="complement">Complemento(opcional)</label>
+            <input
+              type="text"
+              id="complement"
+              name="complement"
+              value={form.values.complement}
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+              className={checkInputHasError('complement') ? 'error' : ''}
+            />
             <EntregaButtonContainer>
               <Button type="button" onClick={continuarPagamento}>
                 Continuar com o pagamento
@@ -83,34 +260,69 @@ export const Entrega = () => {
                 Voltar para o carrinho
               </Button>
             </EntregaButtonContainer>
-          </EntregaForm>
-        ) : (
-          ''
-        )}
-
-        {cartao ? (
-          <EntregaForm>
+          </section>
+          <section className={cartao ? '' : 'invisivel'}>
             <h2>Pagamento - Valor a pagar {formataPreco(precoTotal())}</h2>
-            <label htmlFor="receptor">Nome no cartão</label>
-            <input type="text" id="receptor" />
+            <label htmlFor="name">Nome no cartão</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={form.values.name}
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+              className={checkInputHasError('name') ? 'error' : ''}
+            />
             <div className="cartao-cvv">
               <div>
-                <label htmlFor="cep">Número do cartão</label>
-                <input type="text" id="cep" />
+                <label htmlFor="numberOfCard">Número do cartão</label>
+                <input
+                  type="text"
+                  id="numberOfCard"
+                  name="numberOfCard"
+                  value={form.values.numberOfCard}
+                  onChange={form.handleChange}
+                  onBlur={form.handleBlur}
+                  className={checkInputHasError('numberOfCard') ? 'error' : ''}
+                />
               </div>
               <div>
-                <label htmlFor="numero">CVV</label>
-                <input type="text" id="numero" />
+                <label htmlFor="code">CVV</label>
+                <input
+                  type="text"
+                  id="code"
+                  name="code"
+                  value={form.values.code}
+                  onChange={form.handleChange}
+                  onBlur={form.handleBlur}
+                  className={checkInputHasError('code') ? 'error' : ''}
+                />
               </div>
             </div>
             <div className="mesVencimento-anoVencimento">
               <div>
-                <label htmlFor="cep">Mês de vencimento</label>
-                <input type="text" id="cep" />
+                <label htmlFor="month">Mês de vencimento</label>
+                <input
+                  type="text"
+                  id="month"
+                  name="month"
+                  value={form.values.month}
+                  onChange={form.handleChange}
+                  onBlur={form.handleBlur}
+                  className={checkInputHasError('month') ? 'error' : ''}
+                />
               </div>
               <div>
-                <label htmlFor="numero">Ano de vencimento</label>
-                <input type="text" id="numero" />
+                <label htmlFor="year">Ano de vencimento</label>
+                <input
+                  type="text"
+                  id="year"
+                  name="year"
+                  value={form.values.year}
+                  onChange={form.handleChange}
+                  onBlur={form.handleBlur}
+                  className={checkInputHasError('year') ? 'error' : ''}
+                />
               </div>
             </div>
             <EntregaButtonContainer>
@@ -121,41 +333,42 @@ export const Entrega = () => {
                 Voltar para edição de endereço
               </Button>
             </EntregaButtonContainer>
-          </EntregaForm>
-        ) : (
-          ''
-        )}
+          </section>
+          <section className={realizarPedido ? '' : 'invisivel'}>
+            {respostaDaApi ? (
+              <>
+                <h2>Pedido realizado - {respostaDaApi.orderId}</h2>
+                <p>
+                  Estamos felizes em informar que seu pedido já está em processo
+                  de preparação e, em breve, será entregue no endereço
+                  fornecido.
+                </p>
+                <p>
+                  Gostaríamos de ressaltar que nossos entregadores não estão
+                  autorizados a realizar cobranças extras.
+                </p>
+                <p>
+                  Lembre-se da importância de higienizar as mãos após o
+                  recebimento do pedido, garantindo assim sua segurança e
+                  bem-estar durante a refeição.
+                </p>
+                <p>
+                  Esperamos que desfrute de uma deliciosa e agradável
+                  experiência gastronômica. Bom apetite!
+                </p>
 
-        {realizarPedido ? (
-          <EntregaForm>
-            <h2>Pedido realizado - ORDER_ID</h2>
-            <p>
-              Estamos felizes em informar que seu pedido já está em processo de
-              preparação e, em breve, será entregue no endereço fornecido.
-            </p>
-            <p>
-              Gostaríamos de ressaltar que nossos entregadores não estão
-              autorizados a realizar cobranças extras.
-            </p>
-            <p>
-              Lembre-se da importância de higienizar as mãos após o recebimento
-              do pedido, garantindo assim sua segurança e bem-estar durante a
-              refeição.
-            </p>
-            <p>
-              Esperamos que desfrute de uma deliciosa e agradável experiência
-              gastronômica. Bom apetite!
-            </p>
-
-            <EntregaButtonContainer>
-              <Button type="button">Concluir</Button>
-            </EntregaButtonContainer>
-          </EntregaForm>
-        ) : (
-          ''
-        )}
+                <EntregaButtonContainer>
+                  <Button type="submit" onClick={concluir}>
+                    Concluir
+                  </Button>
+                </EntregaButtonContainer>
+              </>
+            ) : (
+              <p>Carregando...</p>
+            )}
+          </section>
+        </form>
       </EntregaContent>
-
       <div className="overlay" onClick={openCart}></div>
     </EntregaContainer>
   )
