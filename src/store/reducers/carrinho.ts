@@ -19,7 +19,6 @@ const cartSlice = createSlice({
   reducers: {
     add: (state, action: PayloadAction<Cardapio>) => {
       const comida = state.items.find((item) => item.id === action.payload.id)
-
       if (!comida) {
         state.items.push(action.payload)
       } else {
@@ -40,10 +39,13 @@ const cartSlice = createSlice({
     },
     entregaClose: (state) => {
       state.isEntregaOpen = false
+    },
+    clear: (state) => {
+      state.items = []
     }
   }
 })
 
-export const { add, remove, open, close, entregaOpen, entregaClose } =
+export const { add, remove, open, close, entregaOpen, entregaClose, clear } =
   cartSlice.actions
 export default cartSlice.reducer

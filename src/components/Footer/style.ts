@@ -1,10 +1,10 @@
 import { styled } from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 
 export const FooterContainer = styled.footer`
   width: 100%;
   height: 298px;
-  background-color: ${cores.amareloEscuro};
+  background-color: ${colors.darkYellow};
   display: flex;
   flex-direction: column;
   position: relative;
@@ -15,7 +15,7 @@ export const FooterContainer = styled.footer`
     text-align: center;
     max-width: 480px;
     margin: 80px auto 40px auto;
-    color: ${cores.vermelho};
+    color: ${colors.red};
   }
 `
 

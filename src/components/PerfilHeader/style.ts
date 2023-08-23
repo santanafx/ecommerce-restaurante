@@ -1,5 +1,5 @@
 import { styled } from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 
 export const PerfilHeaderContainer = styled.header`
   width: 100%;
@@ -14,7 +14,7 @@ export const PerfilHeaderContainer = styled.header`
   span {
     font-weight: bold;
     font-size: 18px;
-    color: ${cores.vermelho};
+    color: ${colors.red};
     line-height: 21.09px;
   }
 
@@ -37,7 +37,7 @@ export const PerfilHeaderComida = styled.div`
     position: absolute;
     top: 25px;
     left: 170px;
-    color: ${cores.branco};
+    color: ${colors.white};
     font-size: 32px;
     line-height: 37.5px;
     font-weight: 100;
@@ -47,7 +47,7 @@ export const PerfilHeaderComida = styled.div`
     position: absolute;
     top: 214.75px;
     left: 170px;
-    color: ${cores.branco};
+    color: ${colors.white};
     font-size: 32px;
     font-weight: bold;
   }

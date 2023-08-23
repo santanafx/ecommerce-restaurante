@@ -124,8 +124,6 @@ export const EntregaContent = styled.div`
   }
 `
 
-export const EntregaForm = styled.div``
-
 export const EntregaButtonContainer = styled.div`
   margin-top: 24px;
 

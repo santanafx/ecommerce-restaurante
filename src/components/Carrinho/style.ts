@@ -1,5 +1,5 @@
 import { styled } from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 import { ButtonContainer } from '../Button/style'
 
 export const CarrinhoContainer = styled.div`
@@ -33,29 +33,31 @@ export const CarrinhoContent = styled.div`
   right: 0;
   z-index: 1;
   min-width: 360px;
-  background-color: ${cores.vermelho};
+  background-color: ${colors.red};
   height: 100%;
 `
 
 export const CarrinhoEntrega = styled.div`
   margin: 40px 8px 0 8px;
+
   div {
     display: flex;
     justify-content: space-between;
     margin-bottom: 16px;
   }
+
   span {
     font-weight: 700;
     font-size: 14px;
     line-height: 16.41px;
-    color: ${cores.amarelo};
+    color: ${colors.yellow};
   }
 
   ${ButtonContainer} {
     width: 100%;
     margin: 0;
-    background-color: ${cores.amarelo};
-    color: ${cores.vermelho};
+    background-color: ${colors.yellow};
+    color: ${colors.red};
     font-size: 14px;
     font-weight: 700;
   }
@@ -66,7 +68,7 @@ export const CarrinhoCard = styled.div`
   padding: 8px;
   width: 344px;
   margin: 16px auto;
-  background-color: ${cores.amarelo};
+  background-color: ${colors.yellow};
   position: relative;
 
   img {
@@ -80,14 +82,14 @@ export const CarrinhoCard = styled.div`
     h2 {
       font-weight: bold;
       font-size: 18px;
-      color: ${cores.vermelho};
+      color: ${colors.red};
       margin-bottom: 16px;
     }
 
     span {
       font-weight: 400;
       font-size: 14px;
-      color: ${cores.vermelho};
+      color: ${colors.red};
     }
   }
 `

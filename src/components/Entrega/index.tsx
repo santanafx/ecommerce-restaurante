@@ -1,20 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux'
+import InputMask from 'react-input-mask'
 import { useState } from 'react'
 import { RootReducer } from '../../store'
-import { entregaClose, open } from '../../store/reducers/carrinho'
+import { entregaClose, open, clear } from '../../store/reducers/carrinho'
 import { useFormik } from 'formik'
 
 import * as Yup from 'yup'
 import * as S from './style'
 
 import { Button } from '../Button'
-
-const formataPreco = (preco = 0) => {
-  return new Intl.NumberFormat('pr-br', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(preco)
-}
+import { parseToBrl } from '../../utils'
 
 type RespostaApi = {
   orderId: string
@@ -168,6 +163,9 @@ export const Entrega = () => {
     setPagamento(false)
     setCartao(false)
     setRealizarPedido(false)
+    dispatch(clear())
+    dispatch(entregaClose())
+    form.resetForm()
   }
 
   const checkInputHasError = (fieldName: string) => {
@@ -217,7 +215,7 @@ export const Entrega = () => {
             <div className="cep-numero">
               <div>
                 <label htmlFor="zipCode">CEP</label>
-                <input
+                <InputMask
                   type="text"
                   id="zipCode"
                   name="zipCode"
@@ -225,6 +223,7 @@ export const Entrega = () => {
                   onChange={form.handleChange}
                   onBlur={form.handleBlur}
                   className={checkInputHasError('zipCode') ? 'error' : ''}
+                  mask="99999-999"
                 />
               </div>
               <div>
@@ -260,7 +259,7 @@ export const Entrega = () => {
             </S.EntregaButtonContainer>
           </section>
           <section className={cartao ? '' : 'invisivel'}>
-            <h2>Pagamento - Valor a pagar {formataPreco(precoTotal())}</h2>
+            <h2>Pagamento - Valor a pagar {parseToBrl(precoTotal())}</h2>
             <label htmlFor="name">Nome no cartão</label>
             <input
               type="text"
@@ -274,7 +273,7 @@ export const Entrega = () => {
             <div className="cartao-cvv">
               <div>
                 <label htmlFor="numberOfCard">Número do cartão</label>
-                <input
+                <InputMask
                   type="text"
                   id="numberOfCard"
                   name="numberOfCard"
@@ -282,11 +281,12 @@ export const Entrega = () => {
                   onChange={form.handleChange}
                   onBlur={form.handleBlur}
                   className={checkInputHasError('numberOfCard') ? 'error' : ''}
+                  mask="9999-9999-9999-9999"
                 />
               </div>
               <div>
                 <label htmlFor="code">CVV</label>
-                <input
+                <InputMask
                   type="text"
                   id="code"
                   name="code"
@@ -294,13 +294,14 @@ export const Entrega = () => {
                   onChange={form.handleChange}
                   onBlur={form.handleBlur}
                   className={checkInputHasError('code') ? 'error' : ''}
+                  mask="999"
                 />
               </div>
             </div>
             <div className="mesVencimento-anoVencimento">
               <div>
                 <label htmlFor="month">Mês de vencimento</label>
-                <input
+                <InputMask
                   type="text"
                   id="month"
                   name="month"
@@ -308,11 +309,12 @@ export const Entrega = () => {
                   onChange={form.handleChange}
                   onBlur={form.handleBlur}
                   className={checkInputHasError('month') ? 'error' : ''}
+                  mask="99"
                 />
               </div>
               <div>
                 <label htmlFor="year">Ano de vencimento</label>
-                <input
+                <InputMask
                   type="text"
                   id="year"
                   name="year"
@@ -320,11 +322,12 @@ export const Entrega = () => {
                   onChange={form.handleChange}
                   onBlur={form.handleBlur}
                   className={checkInputHasError('year') ? 'error' : ''}
+                  mask="99"
                 />
               </div>
             </div>
             <S.EntregaButtonContainer>
-              <Button type="button" onClick={finalizarPagamento}>
+              <Button type="submit" onClick={finalizarPagamento}>
                 Finalizar pagamento
               </Button>
               <Button type="button" onClick={continuarPagamento}>
@@ -356,7 +359,7 @@ export const Entrega = () => {
                 </p>
 
                 <S.EntregaButtonContainer>
-                  <Button type="submit" onClick={concluir}>
+                  <Button type="button" onClick={concluir}>
                     Concluir
                   </Button>
                 </S.EntregaButtonContainer>

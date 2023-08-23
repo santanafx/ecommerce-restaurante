@@ -30,6 +30,7 @@ export const CardPerfilContainer = styled.div`
 export const CardPerfilImgContainer = styled.div`
   display: flex;
   justify-content: center;
+
   img {
     margin: 8px;
     width: 100%;

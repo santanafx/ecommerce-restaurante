@@ -1,5 +1,5 @@
 import { styled } from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 
 export const HeaderImage = styled.header`
   width: 100%;
@@ -26,6 +26,6 @@ export const HeaderImage = styled.header`
     line-height: 42.19px;
     text-align: center;
     font-weight: bold;
-    color: ${cores.vermelho};
+    color: ${colors.red};
   }
 `

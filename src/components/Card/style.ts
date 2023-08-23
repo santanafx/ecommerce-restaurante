@@ -8,9 +8,11 @@ export const CardContainer = styled.div`
   border: 1px solid ${colors.red};
   position: relative;
   max-width: 472px;
+
   a {
     text-decoration: none;
   }
+
   img {
     width: 100%;
     object-fit: cover;
