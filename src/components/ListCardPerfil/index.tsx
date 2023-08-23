@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { ListCardPerfilContainer, ListCardPerfilGridContainer } from './style'
+
+import * as S from './style'
 
 import { CardPerfil } from '../CardPerfil'
 
@@ -44,8 +45,8 @@ export const ListCardPerfil = ({ tipo }: Props) => {
     tipoDaComida.length > 0 ? tipoDaComida[0].cardapio : []
 
   return (
-    <ListCardPerfilContainer>
-      <ListCardPerfilGridContainer>
+    <S.ListCardPerfilContainer>
+      <S.ListCardPerfilGridContainer>
         {tipoDaComidaCardapio.map((element) => {
           return (
             <CardPerfil
@@ -59,7 +60,7 @@ export const ListCardPerfil = ({ tipo }: Props) => {
             />
           )
         })}
-      </ListCardPerfilGridContainer>
-    </ListCardPerfilContainer>
+      </S.ListCardPerfilGridContainer>
+    </S.ListCardPerfilContainer>
   )
 }

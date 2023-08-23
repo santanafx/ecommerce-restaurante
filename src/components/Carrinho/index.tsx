@@ -1,15 +1,11 @@
-import {
-  BotaoLixeiraImgContainer,
-  CarrinhoCard,
-  CarrinhoContainer,
-  CarrinhoContent,
-  CarrinhoEntrega
-} from './styles'
-import { Button } from '../Button'
-import lixeira from '../../assets/images/lixeira.png'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootReducer } from '../../store'
 import { close, remove, entregaOpen } from '../../store/reducers/carrinho'
+import { RootReducer } from '../../store'
+import lixeira from '../../assets/images/lixeira.png'
+
+import * as S from './style'
+
+import { Button } from '../Button'
 
 const formataPreco = (preco = 0) => {
   return new Intl.NumberFormat('pr-br', {
@@ -45,17 +41,17 @@ export const Carrinho = () => {
   }
 
   return (
-    <CarrinhoContainer className={isOpen ? 'visivel' : ''}>
-      <CarrinhoContent>
+    <S.CarrinhoContainer className={isOpen ? 'visivel' : ''}>
+      <S.CarrinhoContent>
         {items.map((e, index) => {
           return (
-            <CarrinhoCard key={e.nome}>
+            <S.CarrinhoCard key={e.nome}>
               <img src={e.foto} alt={e.nome} />
               <div>
                 <h2>{e.nome}</h2>
                 <span>R$ {e.preco}</span>
               </div>
-              <BotaoLixeiraImgContainer>
+              <S.BotaoLixeiraImgContainer>
                 <img
                   src={lixeira}
                   alt="Botao de remover item"
@@ -65,11 +61,11 @@ export const Carrinho = () => {
                     }
                   }}
                 />
-              </BotaoLixeiraImgContainer>
-            </CarrinhoCard>
+              </S.BotaoLixeiraImgContainer>
+            </S.CarrinhoCard>
           )
         })}
-        <CarrinhoEntrega>
+        <S.CarrinhoEntrega>
           <div>
             <span>Valor total</span>
             <span>{formataPreco(precoTotal())}</span>
@@ -78,9 +74,9 @@ export const Carrinho = () => {
           <Button type="button" onClick={openEntrega}>
             Continuar com a entrega
           </Button>
-        </CarrinhoEntrega>
-      </CarrinhoContent>
+        </S.CarrinhoEntrega>
+      </S.CarrinhoContent>
       <div className="overlay" onClick={closeCart}></div>
-    </CarrinhoContainer>
+    </S.CarrinhoContainer>
   )
 }

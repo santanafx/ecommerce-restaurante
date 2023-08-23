@@ -1,13 +1,9 @@
 import { Link } from 'react-router-dom'
-import { Button } from '../Button'
-import {
-  CardContainer,
-  CardContainerFilter,
-  CardTitle,
-  CardTitleReviewContainer
-} from './style'
-
 import estrela from '../../assets/images/estrela.png'
+
+import * as S from './style'
+
+import { Button } from '../Button'
 import { ButtonFilter } from '../Button/style'
 
 type Props = {
@@ -28,8 +24,8 @@ export const Card = ({
   capa
 }: Props) => {
   return (
-    <CardContainer>
-      <CardContainerFilter>
+    <S.CardContainer>
+      <S.CardContainerFilter>
         {destacado === true && <ButtonFilter>Destaque da semana</ButtonFilter>}
 
         {tipo !== undefined && (
@@ -37,22 +33,22 @@ export const Card = ({
             <ButtonFilter>{tipo}</ButtonFilter>
           </Link>
         )}
-      </CardContainerFilter>
+      </S.CardContainerFilter>
       <div>
         <img src={capa} alt={titulo} />
       </div>
-      <CardTitleReviewContainer>
-        <CardTitle>{titulo}</CardTitle>
+      <S.CardTitleReviewContainer>
+        <S.CardTitle>{titulo}</S.CardTitle>
 
         <div>
           <span>{avaliacao}</span>
           <img src={estrela} alt="Estrela" />
         </div>
-      </CardTitleReviewContainer>
+      </S.CardTitleReviewContainer>
       <p>{descricao}</p>
       <Link to={`/perfil/${tipo}`}>
         <Button type="button">Saiba mais</Button>
       </Link>
-    </CardContainer>
+    </S.CardContainer>
   )
 }

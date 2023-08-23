@@ -1,15 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { Button } from '../Button'
-import {
-  EntregaButtonContainer,
-  EntregaContainer,
-  EntregaContent
-} from './styles'
+import { useState } from 'react'
 import { RootReducer } from '../../store'
 import { entregaClose, open } from '../../store/reducers/carrinho'
-import { useState } from 'react'
 import { useFormik } from 'formik'
+
 import * as Yup from 'yup'
+import * as S from './style'
+
+import { Button } from '../Button'
 
 const formataPreco = (preco = 0) => {
   return new Intl.NumberFormat('pr-br', {
@@ -181,8 +179,8 @@ export const Entrega = () => {
   }
 
   return (
-    <EntregaContainer className={isEntregaOpen ? 'visivel' : ''}>
-      <EntregaContent>
+    <S.EntregaContainer className={isEntregaOpen ? 'visivel' : ''}>
+      <S.EntregaContent>
         <form onSubmit={form.handleSubmit}>
           <section className={!pagamento ? '' : 'invisivel'}>
             <h2>Entrega</h2>
@@ -252,14 +250,14 @@ export const Entrega = () => {
               onBlur={form.handleBlur}
               className={checkInputHasError('complement') ? 'error' : ''}
             />
-            <EntregaButtonContainer>
+            <S.EntregaButtonContainer>
               <Button type="button" onClick={continuarPagamento}>
                 Continuar com o pagamento
               </Button>
               <Button type="button" onClick={voltarCarrinho}>
                 Voltar para o carrinho
               </Button>
-            </EntregaButtonContainer>
+            </S.EntregaButtonContainer>
           </section>
           <section className={cartao ? '' : 'invisivel'}>
             <h2>Pagamento - Valor a pagar {formataPreco(precoTotal())}</h2>
@@ -325,14 +323,14 @@ export const Entrega = () => {
                 />
               </div>
             </div>
-            <EntregaButtonContainer>
+            <S.EntregaButtonContainer>
               <Button type="button" onClick={finalizarPagamento}>
                 Finalizar pagamento
               </Button>
               <Button type="button" onClick={continuarPagamento}>
                 Voltar para edição de endereço
               </Button>
-            </EntregaButtonContainer>
+            </S.EntregaButtonContainer>
           </section>
           <section className={realizarPedido ? '' : 'invisivel'}>
             {respostaDaApi ? (
@@ -357,19 +355,19 @@ export const Entrega = () => {
                   experiência gastronômica. Bom apetite!
                 </p>
 
-                <EntregaButtonContainer>
+                <S.EntregaButtonContainer>
                   <Button type="submit" onClick={concluir}>
                     Concluir
                   </Button>
-                </EntregaButtonContainer>
+                </S.EntregaButtonContainer>
               </>
             ) : (
               <p>Carregando...</p>
             )}
           </section>
         </form>
-      </EntregaContent>
+      </S.EntregaContent>
       <div className="overlay" onClick={openCart}></div>
-    </EntregaContainer>
+    </S.EntregaContainer>
   )
 }

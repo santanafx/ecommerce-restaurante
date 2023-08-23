@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
-import { ListCardContainer, ListCardGridContainer } from './style'
+
 import { Card } from '../Card'
+
+import * as S from './style'
 
 type Cardapio = {
   foto: string
@@ -32,8 +34,8 @@ export const ListCardHome = () => {
   }, [])
 
   return (
-    <ListCardContainer>
-      <ListCardGridContainer>
+    <S.ListCardContainer>
+      <S.ListCardGridContainer>
         {listaDeComidas.map((e) => (
           <Card
             key={e.id}
@@ -45,7 +47,7 @@ export const ListCardHome = () => {
             capa={e.capa}
           />
         ))}
-      </ListCardGridContainer>
-    </ListCardContainer>
+      </S.ListCardGridContainer>
+    </S.ListCardContainer>
   )
 }
