@@ -27,8 +27,8 @@ export const Entrega = () => {
 
   const form = useFormik({
     initialValues: {
-      id: 1,
-      price: 10,
+      id: '',
+      price: '',
       receiver: '',
       description: '',
       city: '',
