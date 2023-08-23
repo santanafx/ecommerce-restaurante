@@ -52,8 +52,8 @@ export const Entrega = () => {
         .min(5, 'A cidade precisa ter pelo menos 5 caracteres')
         .required('O campo é obrigatório'),
       zipCode: Yup.string()
-        .min(8, 'O cep precisa ter 8 caracteres')
-        .max(8, 'O cep precisa ter 8 caracteres')
+        .min(9, 'O cep precisa ter 8 caracteres')
+        .max(9, 'O cep precisa ter 8 caracteres')
         .required('O campo é obrigatório'),
       number: Yup.string()
         .min(1, 'O número precisa ter pelo menos 1 caractere')
@@ -62,8 +62,8 @@ export const Entrega = () => {
         .min(5, 'O nome precisa ter pelo menos 5 caracteres')
         .required('O campo é obrigatório'),
       numberOfCard: Yup.string()
-        .min(16, 'O cartão precisa ter 16 caracteres')
-        .max(16, 'O cartão precisa ter 16 caracteres')
+        .min(19, 'O cartão precisa ter 16 caracteres')
+        .max(19, 'O cartão precisa ter 16 caracteres')
         .required('O campo é obrigatório'),
       code: Yup.string()
         .min(3, 'O CVV precisa ter 3 caracteres')
