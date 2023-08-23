@@ -1,11 +1,11 @@
 import { styled } from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 import { ButtonContainer, ButtonFilter } from '../Button/style'
 
 export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  border: 1px solid ${cores.vermelho};
+  border: 1px solid ${colors.red};
   position: relative;
   max-width: 472px;
   a {
@@ -21,7 +21,7 @@ export const CardContainer = styled.div`
 
   p {
     font-size: 14px;
-    color: ${cores.vermelho};
+    color: ${colors.red};
     padding: 0 8px;
     margin-bottom: 16px;
   }
@@ -54,7 +54,7 @@ export const CardTitleReviewContainer = styled.div`
     font-size: 18px;
     line-height: 21.09px;
     font-weight: bold;
-    color: ${cores.vermelho};
+    color: ${colors.red};
   }
 
   img {
@@ -71,7 +71,7 @@ export const CardTitleReviewContainer = styled.div`
 `
 
 export const CardTitle = styled.h2`
-  color: ${cores.vermelho};
+  color: ${colors.red};
   font-size: 18px;
   line-height: 21.09px;
 `

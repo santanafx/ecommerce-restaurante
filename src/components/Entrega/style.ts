@@ -1,5 +1,5 @@
 import { styled } from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 import { ButtonContainer } from '../Button/style'
 
 export const EntregaContainer = styled.div`
@@ -34,7 +34,7 @@ export const EntregaContent = styled.div`
   z-index: 1;
   min-width: 360px;
   max-width: 360px;
-  background-color: ${cores.vermelho};
+  background-color: ${colors.red};
   height: 100%;
 
   form {
@@ -51,19 +51,19 @@ export const EntregaContent = styled.div`
       h2 {
         font-size: 16px;
         font-weight: 700;
-        color: ${cores.amarelo};
+        color: ${colors.yellow};
         margin-bottom: 16px;
       }
 
       label {
         font-size: 14px;
         font-weight: 700;
-        color: ${cores.amarelo};
+        color: ${colors.yellow};
         margin-bottom: 8px;
       }
 
       input {
-        background-color: ${cores.amarelo};
+        background-color: ${colors.yellow};
         font-size: 14px;
         font-weight: 700;
         margin-bottom: 8px;
@@ -118,7 +118,7 @@ export const EntregaContent = styled.div`
         font-weight: 400;
         font-size: 14px;
         line-height: 22px;
-        color: ${cores.amarelo};
+        color: ${colors.yellow};
       }
     }
   }
@@ -132,8 +132,8 @@ export const EntregaButtonContainer = styled.div`
   ${ButtonContainer} {
     width: 100%;
     margin: 0;
-    background-color: ${cores.amarelo};
-    color: ${cores.vermelho};
+    background-color: ${colors.yellow};
+    color: ${colors.red};
     font-size: 14px;
     font-weight: 700;
     margin-bottom: 8px;

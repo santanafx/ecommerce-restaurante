@@ -1,9 +1,9 @@
 import { styled } from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 
 export const ButtonContainer = styled.button`
-  background-color: ${cores.vermelho};
-  color: ${cores.amarelo};
+  background-color: ${colors.red};
+  color: ${colors.yellow};
   font-size: 14px;
   text-align: center;
   border: none;
@@ -12,8 +12,8 @@ export const ButtonContainer = styled.button`
 `
 
 export const ButtonFilter = styled.span`
-  background-color: ${cores.vermelho};
-  color: ${cores.amarelo};
+  background-color: ${colors.red};
+  color: ${colors.yellow};
   font-size: 12px;
   line-height: 14.06px;
   text-align: center;

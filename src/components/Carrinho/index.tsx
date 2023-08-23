@@ -6,13 +6,7 @@ import lixeira from '../../assets/images/lixeira.png'
 import * as S from './style'
 
 import { Button } from '../Button'
-
-const formataPreco = (preco = 0) => {
-  return new Intl.NumberFormat('pr-br', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(preco)
-}
+import { parseToBrl } from '../../utils'
 
 export const Carrinho = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.carrinho)
@@ -68,7 +62,7 @@ export const Carrinho = () => {
         <S.CarrinhoEntrega>
           <div>
             <span>Valor total</span>
-            <span>{formataPreco(precoTotal())}</span>
+            <span>{parseToBrl(precoTotal())}</span>
           </div>
 
           <Button type="button" onClick={openEntrega}>

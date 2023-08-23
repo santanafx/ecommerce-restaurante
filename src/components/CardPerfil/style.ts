@@ -1,25 +1,25 @@
 import { styled } from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 import { ButtonContainer } from '../Button/style'
 
 export const CardPerfilContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: ${cores.vermelho};
+  background-color: ${colors.red};
   position: relative;
   width: 338px;
 
   p {
     font-size: 14px;
-    color: ${cores.amarelo};
+    color: ${colors.yellow};
     padding: 0 8px;
     margin-bottom: 16px;
   }
 
   ${ButtonContainer} {
     margin: auto 8px 8px 8px;
-    background-color: ${cores.amarelo};
-    color: ${cores.vermelho};
+    background-color: ${colors.yellow};
+    color: ${colors.red};
     font-weight: 700;
     font-size: 14px;
     line-height: 16.41px;
@@ -51,7 +51,7 @@ export const CardPerfilTitleReviewContainer = styled.div`
     font-size: 18px;
     line-height: 21.09px;
     font-weight: bold;
-    color: ${cores.vermelho};
+    color: ${colors.red};
   }
 
   div {
@@ -61,7 +61,7 @@ export const CardPerfilTitleReviewContainer = styled.div`
 `
 
 export const CardPerfilTitle = styled.h2`
-  color: ${cores.amarelo};
+  color: ${colors.yellow};
   font-size: 18px;
   line-height: 21.09px;
   margin-bottom: 8px;
@@ -94,7 +94,7 @@ export const Modal = styled.div`
 
 export const ModalContent = styled.div`
   display: flex;
-  background-color: ${cores.vermelho};
+  background-color: ${colors.red};
   max-width: 1024px;
   position: relative;
   z-index: 1;
@@ -104,12 +104,12 @@ export const ModalContent = styled.div`
     font-weight: bold;
     font-size: 18px;
     line-height: 21.09px;
-    color: ${cores.amarelo};
+    color: ${colors.yellow};
     margin-bottom: 16px;
   }
 
   p {
-    color: ${cores.amarelo};
+    color: ${colors.yellow};
     padding: 0;
     font-weight: 400;
     font-size: 14px;
@@ -118,7 +118,7 @@ export const ModalContent = styled.div`
 
   span {
     display: block;
-    color: ${cores.amarelo};
+    color: ${colors.yellow};
     font-weight: 400;
     font-size: 14px;
     line-height: 22px;
