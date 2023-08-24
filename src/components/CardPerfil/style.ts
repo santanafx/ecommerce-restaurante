@@ -1,5 +1,5 @@
 import { styled } from 'styled-components'
-import { colors } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 import { ButtonContainer } from '../Button/style'
 
 export const CardPerfilContainer = styled.div`
@@ -136,6 +136,14 @@ export const ModalContent = styled.div`
 
   ${ButtonContainer} {
     margin: auto 0 0 0;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    flex-direction: column;
+
+    img {
+      margin-bottom: 8px;
+    }
   }
 `
 export const BotaoCloseImgContainer = styled.div`
