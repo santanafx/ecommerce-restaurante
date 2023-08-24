@@ -6,7 +6,7 @@ export const Perfil = () => {
   const { tipo } = useParams()
   return (
     <>
-      <PerfilHeader />
+      <PerfilHeader tipo={tipo} />
       <ListCardPerfil tipo={tipo} />
     </>
   )
