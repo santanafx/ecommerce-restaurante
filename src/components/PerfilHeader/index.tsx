@@ -2,7 +2,6 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import fundo from '../../assets/images/fundo.png'
 import logo from '../../assets/images/logo.png'
-import macarrao from '../../assets/images/macarrao.png'
 import { RootReducer } from '../../store'
 
 import * as S from './style'
