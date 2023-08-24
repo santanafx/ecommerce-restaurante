@@ -1,5 +1,5 @@
 import { styled } from 'styled-components'
-import { colors } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 
 export const PerfilHeaderContainer = styled.header`
   width: 100%;
@@ -23,6 +23,10 @@ export const PerfilHeaderContainer = styled.header`
     top: 57.5px;
     left: 50%;
     transform: translate(-50%, 0);
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    flex-direction: column;
   }
 `
 
@@ -50,5 +54,19 @@ export const PerfilHeaderComida = styled.div`
     color: ${colors.white};
     font-size: 32px;
     font-weight: bold;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    height: 300px;
+
+    h3 {
+      top: 10px;
+      left: 50px;
+    }
+
+    h2 {
+      top: 214.75px;
+      left: 50px;
+    }
   }
 `
